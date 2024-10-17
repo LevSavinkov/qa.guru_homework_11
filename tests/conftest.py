@@ -1,5 +1,4 @@
 import pytest
-from selene import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selene import Browser, Config
@@ -24,8 +23,8 @@ def setup_browser():
         options=options
     )
     
-    remote_browser = Browser(Config(driver))
-    yield remote_browser
+    browser = Browser(Config(driver))
+    yield browser
     
     attach.add_screenshot(browser)
     attach.add_logs(browser)
