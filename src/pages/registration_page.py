@@ -1,10 +1,9 @@
-from selene import be, have, by
+from selene import be, have, by, browser
 
 
 class RegistrationPage:
     
-    def __init__(self, browser):
-        self.browser = browser
+    def __init__(self):
         self.first_name_input = browser.element("#firstName")
         self.last_name_input = browser.element("#lastName")
         self.email_input = browser.element("#userEmail")
@@ -17,19 +16,23 @@ class RegistrationPage:
         self.city_list = browser.element("#city")
         self.submit_button = browser.element("#submit")
     
-    def open_browser(self):
-        self.browser.open("https://demoqa.com/automation-practice-form")
+    @staticmethod
+    def open_browser():
+        browser.open("https://demoqa.com/automation-practice-form")
     
-    def delete_banners(self):
-        self.browser.driver.execute_script("$('#fixedban').remove()")
-        self.browser.driver.execute_script("$('footer').remove()")
+    @staticmethod
+    def delete_banners():
+        browser.driver.execute_script("$('#fixedban').remove()")
+        browser.driver.execute_script("$('footer').remove()")
     
-    def get_gender_input(self, gender):
-        return self.browser.element(
+    @staticmethod
+    def get_gender_input(gender):
+        return browser.element(
             by.xpath(f"//input[@value='{gender}']/ancestor::div[contains(@class, 'custom-control')]"))
     
-    def get_hobbies_input(self, hobby):
-        return self.browser.element(by.xpath(
+    @staticmethod
+    def get_hobbies_input(hobby):
+        return browser.element(by.xpath(
             f"//label[@class='custom-control-label' and text()='{hobby}']"
             "/ancestor::div[contains(@class, 'custom-checkbox')]"))
     
@@ -58,12 +61,12 @@ class RegistrationPage:
     
     def fill_date_from_calendar(self, day, month, year):
         self.birth_date_input.click()
-        self.browser.element(by.xpath("//select[@class = 'react-datepicker__year-select']")).click().element(
+        browser.element(by.xpath("//select[@class = 'react-datepicker__year-select']")).click().element(
             by.xpath(f"//option[text() = '{year}']")
         ).click()
-        self.browser.element(by.xpath("//select[@class = 'react-datepicker__month-select']")).click().element(
+        browser.element(by.xpath("//select[@class = 'react-datepicker__month-select']")).click().element(
             by.xpath(f"//option[text() = '{month}']")).click()
-        self.browser.element(
+        browser.element(
             by.xpath(f"//div[contains(@class, 'react-datepicker__day') and text() = '{day}']")).click()
     
     def fill_subject(self, subject):
@@ -86,12 +89,13 @@ class RegistrationPage:
     
     def choose_state(self, option):
         self.state_list.click()
-        self.browser.element(f"//div[contains(@id, 'react-select-3-option') and contains(text(), '{option}')]").click()
+        browser.element(f"//div[contains(@id, 'react-select-3-option') and contains(text(), '{option}')]").click()
     
     def choose_city(self, option):
         self.city_list.click()
-        self.browser.element(f"//div[contains(@id, 'react-select-4-option') and contains(text(), '{option}')]").click()
+        browser.element(f"//div[contains(@id, 'react-select-4-option') and contains(text(), '{option}')]").click()
     
-    def assert_user_data(self, param, expected_value):
-        (self.browser.element(by.xpath(f"//table/tbody//td[text() = '{param}']/following-sibling::td"))
+    @staticmethod
+    def assert_user_data(param, expected_value):
+        (browser.element(by.xpath(f"//table/tbody//td[text() = '{param}']/following-sibling::td"))
          .should(have.text(expected_value)))

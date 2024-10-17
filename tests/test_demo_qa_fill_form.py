@@ -4,7 +4,7 @@ from src.pages.registration_page import RegistrationPage
 
 
 def test_fill_form(setup_browser):
-    registration_page = RegistrationPage(setup_browser)
+    registration_page = RegistrationPage()
     registration_page.open_browser()
     registration_page.delete_banners()
     registration_page.fill_name(name)
