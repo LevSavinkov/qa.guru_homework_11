@@ -27,6 +27,6 @@ def test_fill_form(setup_browser):
     registration_page.assert_user_data("Date of Birth", f"{test_day} {test_month},{test_year}")
     registration_page.assert_user_data("Subjects", test_subject)
     registration_page.assert_user_data("Hobbies", f"{sport_hobby}, {music_hobby}")
-    registration_page.assert_user_data("Picture", test_file.split("\\")[-1])
+    registration_page.assert_user_data("Picture", "test_image.jpg")
     registration_page.assert_user_data("Address", test_address)
     registration_page.assert_user_data("State and City", f"{test_state} {test_city}")
