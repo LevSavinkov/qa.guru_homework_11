@@ -18,7 +18,7 @@ class RegistrationPage:
     
     @staticmethod
     def open_browser():
-        browser.open("/automation-practice-form")
+        browser.open("https://demoqa.com/automation-practice-form")
     
     @staticmethod
     def delete_banners():
