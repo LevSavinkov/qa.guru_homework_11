@@ -6,7 +6,7 @@ registration_page = RegistrationPage()
 
 
 def test_fill_form(setup_browser):
-    registration_page.open_browser()
+    registration_page.open_browser(setup_browser)
     registration_page.delete_banners()
     registration_page.fill_name(name)
     registration_page.fill_surname(surname)

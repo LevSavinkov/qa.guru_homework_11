@@ -1,4 +1,4 @@
-from selene import be, have, browser, by
+from selene import be, have, by
 
 
 class RegistrationPage:
@@ -17,7 +17,7 @@ class RegistrationPage:
         self.submit_button = browser.element("#submit")
     
     @staticmethod
-    def open_browser():
+    def open_browser(browser):
         browser.open("https://demoqa.com/automation-practice-form")
     
     @staticmethod
