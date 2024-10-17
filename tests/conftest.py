@@ -9,6 +9,8 @@ from src.utils import attach
 @pytest.fixture(scope='function')
 def setup_browser():
     browser.config.base_url = "https://demoqa.com/"
+    browser.config.window_height = 1920
+    browser.config.window_width = 1080
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
@@ -18,9 +20,8 @@ def setup_browser():
             "enableVideo": True
         }
     }
-    options.capabilities.update(selenoid_capabilities)
     options.page_load_strategy = "eager"
-    options.add_argument("window-size=1920,1080")
+    options.capabilities.update(selenoid_capabilities)
     driver = webdriver.Remote(
         command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
